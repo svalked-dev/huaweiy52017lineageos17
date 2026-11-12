@@ -1,0 +1,25 @@
+diff --git a/tools/Android.bp b/tools/Android.bp
+index 1ac9126..3c18da3 100644
+--- a/tools/Android.bp
++++ b/tools/Android.bp
+@@ -14,7 +14,11 @@ cc_prebuilt_library_shared {
+         // arch mutator should handle this.
+         windows: {
+             enabled: true,
+-        }
++            srcs: ["linux/lib64/libLLVM_android.so"],
++        },
++        android: {
++            srcs: ["linux/lib64/libLLVM_android.so"],
++        },
+     },
+ }
+ 
+@@ -33,6 +37,7 @@ cc_prebuilt_library_shared {
+         // arch mutator should handle this.
+         windows: {
+             enabled: true,
++            srcs: ["linux/lib64/libclang_android.so"],
+         }
+     },
+ }

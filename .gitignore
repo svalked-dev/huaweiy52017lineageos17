@@ -1,0 +1,4 @@
+# local build leftovers
+*.pyc
+__pycache__/
+*.log

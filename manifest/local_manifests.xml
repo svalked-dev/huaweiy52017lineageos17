@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Example local manifest for the MYA-U29 port.
+
+  Copy this file into <checkout>/.repo/local_manifests/mya_u29.xml after
+  "repo init/sync" of the LineageOS 17.1 tree and run
+
+      repo sync -c -j$(nproc)
+
+  again.  The device tree lives in this repository; the vendor tree is taken
+  from the public G81 repository (it carries the 400 MB vendor image as a
+  Git LFS object).
+-->
+<manifest>
+  <!-- Device tree of the MYA-U29. -->
+  <project name="svalked-dev/huaweiy52017lineageos17"
+           path="device/huawei/mya_u29"
+           revision="main"
+           remote="mya_u29"/>
+
+  <!-- Public G81 trees: vendor payload, prebuilt kernel, sepolicy helpers. -->
+  <project name="17-Pro-Max-Mini/proprietary_vendor_alps_g81"
+           path="vendor/alps/g81"
+           revision="lineage-17.1"
+           dest-branch="lineage-17.1"/>
+  <project name="17-Pro-Max-Mini/android_device_alps_g81"
+           path="device/alps/g81"
+           revision="lineage-17.1"
+           dest-branch="lineage-17.1"/>
+</manifest>

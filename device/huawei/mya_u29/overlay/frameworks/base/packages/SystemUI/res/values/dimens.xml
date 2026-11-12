@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 24dp status-bar edge padding; 30 physical pixels at 200 dpi. -->
+    <dimen name="status_bar_padding_start">24dp</dimen>
+    <dimen name="status_bar_padding_end">24dp</dimen>
+</resources>
