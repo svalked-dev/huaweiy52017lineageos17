@@ -1,8 +1,17 @@
 # Evolution X 4.5 (LineageOS 17.1) — Huawei MYA-U29
 
-Порт Android 10 (LineageOS 17.1, base `QQ3A.200805.001`) на **Huawei MYA-U29**
-(MT6580, ARMv7, 1 ГБ RAM, 480×854). Порт сделан «с нуля»: готовых сборок
-LineageOS 17.1 под этот аппарат не существовало.
+Порт **Evolution X 4.5** на **Huawei MYA-U29** (MT6580, ARMv7, 1 ГБ RAM,
+480×854). Порт сделан «с нуля»: готовых сборок Evolution X 4.5 / LineageOS 17.1
+под этот аппарат не существовало.
+
+> **Назначение проекта изначально — порт Evolution X 4.5.**
+> Evolution X 4.5 — это сборка поверх LineageOS 17.1 (Android 10), поэтому база
+> здесь именно `lineage-17.1`, а продукт называется `evolution_mya_u29` и уже
+> несёт брендинг EvoX (`ro.modversion=EvolutionX-4.5-…`, `ro.evolution.version=4.5`,
+> `PRODUCT_BRAND=Evolution`). Этап EvoX-слоя (тема, оверлеи, EvoX-Settings /
+> EvoX-SystemUI / EvoX-Launcher) подключается вторым шагом поверх уже рабочей
+> LineageOS 17.1 — так всегда остаётся рабочий откат. Подробности — в
+> разделе «Что внутри» и в истории коммитов.
 
 Работает **без GSI**: собирается обычный `system.img` + `vendor.img` + `boot.img`,
 которые прошиваются через TWRP или напрямую через `adb` с root.
@@ -53,6 +62,25 @@ manifest/local_manifests.xml  пример подключения проекто
 лежат MTK HAL-ы, `/etc/init/hw/*`, `nonplat_sepolicy.cil`, `precompiled_sepolicy`
 и VINTF-манифест. Fstab внутри него заменяется на MYA-U29-овский
 (см. `tools/patch-vendor-fstab.py`).
+
+### Состояние EvoX-слоя
+
+Сейчас в сборке — **база LineageOS 17.1** (Launcher3QuickStep, Settings,
+SystemUI, Trebuchet) + **брендинг Evolution X 4.5**. Собственно наработки EvoX
+(тема, оверлеи, EvoX-версии Settings/SystemUI/Launcher) в дерево пока **не
+включены**: в манифесте нет ни одного EvoX-проекта, а `src/evolutionx` и
+`src/evox_src` пусты.
+
+Порядок работ (сознательно такой):
+
+1. довести до рабочей загрузки чистую LineageOS 17.1 на MYA-U29 — этого на
+   аппарате не было никогда, и это основной результат;
+2. поверх — подключить EvoX-проекты отдельными записями в манифесте с
+   `remove-project` для стоковых `packages/apps/Settings` и оверлеев, чтобы
+   конфликт по именам не ломал сборку.
+
+Общесистемной тёмной темы и Substratum в порту нет — только то, что приносит
+сам EvoX-слой.
 
 ---
 
