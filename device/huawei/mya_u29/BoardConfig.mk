@@ -71,6 +71,10 @@ TARGET_COPY_OUT_VENDOR := vendor
 BOARD_HAS_LARGE_FILESYSTEM := true
 
 # Recovery.
+# The device keeps the TWRP image in the "recovery" partition, so no AOSP
+# recovery is built here.  This also removes the recovery->boot patch from
+# the system image dependency chain.
+TARGET_NO_RECOVERY := true
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery.fstab
 BOARD_HAS_NO_SELECT_BUTTON := true
 RECOVERY_SDCARD_ON_DATA := true
